@@ -13,12 +13,14 @@ class Transversal {
 	#MongoModels;
 	#FieldSchema;
 	#ResolverSchema;
+	#schemaTypes;
 	cache;
 
 	constructor(MongoModels) {
 		this.cache = new TransversalCache();
 		this.#MongoModels = MongoModels;
 		this.#FieldSchema = {};
+		this.#schemaTypes = {};
 		this.#ResolverSchema = {
 			query: {
 				name: 'RootQuery',
@@ -100,9 +102,23 @@ class Transversal {
 
 			Object.keys(model.schema.paths).forEach((field) => {
 				if (field !== '__v') {
-					fields[field] = {
-						type: this.#type[model.schema.paths[field].instance],
-					};
+					if (!model[field].ref) {
+						fields[field] = {
+							type: this.#type[model.schema.paths[field].instance],
+						};
+					} else {
+						if (Array.isArray(model[field])) {
+							fields[field] = {
+								type: GraphQLList(model[field].ref),
+							};
+							this.#schemaTypes[model[field].ref] = model[field].ref;
+						} else {
+							fields[field] = {
+								type: model[field].ref,
+							};
+							this.#schemaTypes[model[field].ref] = model[field].ref;
+						}
+					}
 				}
 			});
 
@@ -161,8 +177,18 @@ class Transversal {
 
 		const fieldString = Object.keys(fieldSchema._fields).reduce(
 			(str, field, idx) => {
-				str += `${field} \n`;
-				return str;
+				if (!this.#schemaTypes[fieldSchema._fields[field]]) {
+					str += `${field} \n`;
+					return str;
+				} else {
+					str += `${field} { \n`;
+					Object.keys(this.#FieldSchema[fieldSchemaName]._fields).forEach(
+						(innerFields) => {
+							str += `${innerField} \n`;
+						}
+					);
+					str += `}`;
+				}
 			},
 			''
 		);
