@@ -26,14 +26,10 @@ const App = () => {
 
 		console.log('GQL Object from server..', gqlObj);
 
-		const users = await gqlObj.transversalQuery(
-			gqlObj.gql.getUsers,
-			{
-				age: 10,
-				height: 10,
-			},
-			true
-		);
+		const users = await gqlObj.transversalQuery(gqlObj.gql.getUsers, {
+			age: 10,
+			height: 10,
+		});
 		console.log('Response: ', users);
 	});
 

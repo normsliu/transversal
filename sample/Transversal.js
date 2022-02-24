@@ -99,16 +99,18 @@ class Transversal {
 	generateFieldSchema() {
 		this.#MongoModels.forEach((model) => {
 			const fields = {};
+			const reusableFields = {};
 
 			Object.keys(model.schema.paths).forEach((field) => {
 				if (field !== '__v') {
 					fields[field] = {
 						type: this.#type[model.schema.paths[field].instance],
 					};
+					reusableFields[field] = model.schema.paths[field].instance;
 				}
 			});
 			//saving fields to be used later or elsewhere
-			// this.#ReusableFieldSchema[model.modelName] = { ...fields };
+			this.#ReusableFieldSchema[model.modelName] = { ...reusableFields };
 
 			this.#FieldSchema[model.modelName] = new GraphQLObjectType({
 				name: model.modelName,
