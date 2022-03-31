@@ -10,7 +10,7 @@ import Drawer from './components/drawer/Drawer';
 
 const App = () => {
 	const [trans, setTrans] = useState({ data: null });
-	const [drawerOpen, setDrawerOpen] = useState(true);
+	const [drawerOpen, setDrawerOpen] = useState(false);
 
 	const transSocket = new TransversalSocket('http://localhost:3000');
 

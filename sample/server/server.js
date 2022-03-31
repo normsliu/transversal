@@ -1,4 +1,5 @@
 require('dotenv').config();
+
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
@@ -6,6 +7,7 @@ const mongoose = require('mongoose');
 const graphqlHTTP = require('express-graphql').graphqlHTTP;
 const Transversal = require('../Transversal');
 const { User, Message } = require('./models/mongoModel');
+const TransversalPubSub = require('./../TransversalPubSub');
 const PORT = process.env.PORT || 3000;
 const socketio = require('socket.io');
 const redis = require('redis');
@@ -60,6 +62,12 @@ const redisClient = redis.createClient({
 	// url: process.env.REDIS_URI || 'redis://default:pass@127.0.0.1:6379',
 });
 
+/**
+ * Initialize Redis PubSub Client
+ */
+
+const pubsub = new TransversalPubSub().createClient(); // url: process.env.REDIS_URI || 'redis://default:pass@127.0.0.1:6379',
+console.log(pubsub);
 /**
  * Instantiate Transversal and cache middleware
  */
@@ -194,6 +202,9 @@ app.use(
 	graphqlHTTP({
 		schema: transversal.RootSchema,
 		graphiql: true,
+		context: (req, res) => {
+			req, res, pubsub;
+		},
 	})
 );
 
