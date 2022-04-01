@@ -66,7 +66,7 @@ const redisClient = redis.createClient({
  * Initialize Redis PubSub Client
  */
 
-const pubsub = new TransversalPubSub().createClient(); // url: process.env.REDIS_URI || 'redis://default:pass@127.0.0.1:6379',
+const pubsub = new TransversalPubSub(); // url: process.env.REDIS_URI || 'redis://default:pass@127.0.0.1:6379',
 console.log(pubsub);
 /**
  * Instantiate Transversal and cache middleware
