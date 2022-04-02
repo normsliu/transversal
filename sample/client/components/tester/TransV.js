@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Query from './components/Query';
-import './transV.css';
+import './transv.css';
 
 const TransV = ({ trans }) => {
 	const [times, setTimes] = useState([]);
