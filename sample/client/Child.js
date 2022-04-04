@@ -52,6 +52,11 @@ const Child = ({ trans }) => {
 	// // 				height: 10,
 	// // 			},
 	// // 			false]
+	useEffect(() => {
+		const subscription = async () => {
+			trans.trans;
+		};
+	}, [trans]);
 
 	return (
 		<>

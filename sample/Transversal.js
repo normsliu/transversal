@@ -38,7 +38,7 @@ class Transversal {
 		this.RootSchema = new GraphQLSchema({
 			query: new GraphQLObjectType(this.#ResolverSchema.query),
 			mutation: new GraphQLObjectType(this.#ResolverSchema.mutation),
-			// subscription: new GraphQLObjectType(this.ResolverSchema.subscription
+			subscription: new GraphQLObjectType(this.#ResolverSchema.subscription),
 		});
 
 		this.gql = {};
@@ -227,7 +227,7 @@ class Transversal {
 		this.RootSchema = new GraphQLSchema({
 			query: new GraphQLObjectType(this.#ResolverSchema.query),
 			mutation: new GraphQLObjectType(this.#ResolverSchema.mutation),
-			// subscription: new GraphQLObjectType(this.ResolverSchema.subscription),
+			subscription: new GraphQLObjectType(this.#ResolverSchema.subscription),
 		});
 		// Generate gql query string
 		const gql = this.createGQLString(
@@ -263,7 +263,7 @@ class Transversal {
 		this.RootSchema = new GraphQLSchema({
 			query: new GraphQLObjectType(this.#ResolverSchema.query),
 			mutation: new GraphQLObjectType(this.#ResolverSchema.mutation),
-			// subscription: new GraphQLObjectType(this.ResolverSchema.subscription),
+			subscription: new GraphQLObjectType(this.#ResolverSchema.subscription),
 		});
 
 		// Generate GQL Query String
@@ -291,20 +291,20 @@ class Transversal {
 		this.RootSchema = new GraphQLSchema({
 			query: new GraphQLObjectType(this.#ResolverSchema.query),
 			mutation: new GraphQLObjectType(this.#ResolverSchema.mutation),
-			// subscription: new GraphQLObjectType(this.ResolverSchema.subscription),
+			subscription: new GraphQLObjectType(this.#ResolverSchema.subscription),
 		});
 
 		// Generate GQL Query String
 		const gql = this.createGQLString(
-			mutationName,
-			'mutation',
+			subscriptionName,
+			'subscription',
 			this.#FieldSchema[fieldSchemaName],
 			args
 		);
 
-		this.gql[mutationName] = gql;
+		this.gql[subscriptionName] = gql;
 
-		console.log('Registered gql mutation', this.gql);
+		console.log('Registered gql subscription', this.gql);
 	}
 
 	/**
@@ -402,7 +402,7 @@ class Transversal {
 		}
 		`;
 
-			return gqlMutation;
+			return gqlSubscription;
 		}
 	}
 

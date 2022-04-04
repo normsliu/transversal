@@ -100,7 +100,9 @@ const userResolver = async (parent, args) => {
 	return users;
 };
 
-const addUserResolver = async (parent, args) => {
+const addUserResolver = async (parent, args, context) => {
+	const { pubsub } = context;
+	pubsub.publish(USER_ADDED, { userAdded });
 	const users = await User.create({
 		firstName: args.firstName,
 		lastName: args.lastName,
@@ -110,8 +112,20 @@ const addUserResolver = async (parent, args) => {
 	return users;
 };
 
+const USER_ADDED = 'user_added';
+const userAddedResolver = async (parent, args, context) => {
+	const { pubsub } = context;
+	return {
+		resolve: (payload) => {
+			return payload.userAdded;
+		},
+		subscribe: () => pubsub.asyncIterator(USER_ADDED),
+	};
+};
+
 transversal.generateQuery('getUsers', 'User', userResolver, userArgs);
 transversal.generateMutation('addUser', 'User', addUserResolver, addUserArgs);
+transversal.generateSubscription('userAdded', 'User', userAddedResolver);
 
 /**
  *
