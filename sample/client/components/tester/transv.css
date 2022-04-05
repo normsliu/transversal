@@ -1,10 +1,12 @@
-.trans {
+.trans-header {
 	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+	padding: 20px;
 }
 
-.trans-header {
-	padding: 10px;
+.trans-header h1 {
+	flex-grow: 1;
+}
+
+.trans-header button {
+	/* margin-left: 20px; */
 }

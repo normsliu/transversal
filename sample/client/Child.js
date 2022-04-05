@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import TransV from './components/tester/TransV';
-import Chart from './components/hero/Chart';
+import Chart from './components/chart/Chart';
 
 const Child = ({ trans }) => {
 	// // const [defaultUsers, setDefaultUsers] = useState();
@@ -56,7 +56,6 @@ const Child = ({ trans }) => {
 	return (
 		<>
 			<h1>Hello World!</h1>
-			{/* <TransV trans={trans} /> */}
 			<Chart />
 		</>
 	);

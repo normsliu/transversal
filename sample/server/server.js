@@ -89,6 +89,7 @@ const addUserArgs = {
 // Resolver and arguments
 const userResolver = async (parent, args) => {
 	const users = await User.find({ age: args.age, height: args.height });
+
 	return users;
 };
 

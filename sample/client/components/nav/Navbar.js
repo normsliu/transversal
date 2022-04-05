@@ -56,7 +56,7 @@ const Navbar = () => {
 									Graphiql
 								</Link>
 							</li>
-							<li className='nav-btn'>
+							{/* <li className='nav-btn'>
 								{button ? (
 									<Link to='/signup' className='btn-link'>
 										<Button buttonStyle='btn--outline'>SIGN UP</Button>
@@ -71,7 +71,7 @@ const Navbar = () => {
 										</Button>
 									</Link>
 								)}
-							</li>
+							</li> */}
 						</ul>
 					</div>
 				</div>

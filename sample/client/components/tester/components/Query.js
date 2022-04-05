@@ -33,7 +33,7 @@ const Query = ({ pingPong, isQuery, trans }) => {
 	return (
 		<>
 			{isQuery ? (
-				<div className='container'>
+				<>
 					<h3>Query</h3>
 					<form
 						className='trans-form'
@@ -92,9 +92,9 @@ const Query = ({ pingPong, isQuery, trans }) => {
 						</label>
 						<input type='submit' value='Submit' />
 					</form>
-				</div>
+				</>
 			) : (
-				<div className='container'>
+				<>
 					<h3>Mutation</h3>
 					<form
 						className='trans-form'
@@ -148,7 +148,7 @@ const Query = ({ pingPong, isQuery, trans }) => {
 						</label>
 						<input type='submit' value='Submit' />
 					</form>
-				</div>
+				</>
 			)}
 		</>
 	);

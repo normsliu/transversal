@@ -7,13 +7,12 @@ import {
 	FaTwitter,
 	FaLinkedin,
 } from 'react-icons/fa';
-import { Button } from '../button/Button';
 import './footer.css';
 
 const Footer = () => {
 	return (
 		<div className='footer-container'>
-			<section className='footer-subscription'>
+			{/* <section className='footer-subscription'>
 				<p className='footer-subscription-heading'>
 					Join our exclusive membership to receive the latest news and releases
 				</p>
@@ -31,20 +30,18 @@ const Footer = () => {
 						<Button buttonStyle='btn--outline'>Subscribe</Button>
 					</form>
 				</div>
-			</section>
+			</section> */}
 			<div className='footer-links'>
 				<div className='footer-link-wrapper'>
 					<div className='footer-link-items'>
 						<h2>About Us</h2>
 						<Link to='/sign-up'>How it works</Link>
-						<Link to='/'>Testimonials</Link>
 						<Link to='/'>Meet the Team</Link>
 					</div>
 					<div className='footer-link-items'>
 						<h2>Contact Us</h2>
 						<Link to='/'>Contact</Link>
 						<Link to='/'>Support</Link>
-						<Link to='/'>Sponsorships</Link>
 					</div>
 				</div>
 			</div>
@@ -73,9 +70,7 @@ const Footer = () => {
 						</Link>
 						<Link
 							className='social-icon-link'
-							to={
-								'//www.youtube.com/channel/UCsKsymTY_4BYR-wytLjex7A?view_as=subscriber'
-							}
+							to={'//www.youtube.com/'}
 							target='_blank'
 							aria-label='Youtube'>
 							<FaYoutube />
