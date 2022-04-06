@@ -3,7 +3,7 @@ import Query from './components/Query';
 import './transV.css';
 
 const TransV = ({ trans, setDrawerOpen }) => {
-	const [times, setTimes] = useState([]);
+	const [chartData, setChartData] = useState([]);
 	const [isQuery, setIsQuery] = useState(true);
 
 	const toggleQuery = () => {
@@ -60,6 +60,12 @@ const TransV = ({ trans, setDrawerOpen }) => {
 		const properties = args.split(', ');
 		const argsObject = {};
 
+		//get count from lcoalstorage queryname.count JSON.parse if null then make it 0
+		let count = 0;
+		// JSON.parse(window.localStorage.getItem(queryName)).count === null
+		// 	? 0
+		// 	: JSON.parse(window.localStorage.getItem(queryName)).count;
+
 		if (poll === 1) {
 			properties.forEach((prop) => {
 				const arr = prop.split(': ');
@@ -79,17 +85,23 @@ const TransV = ({ trans, setDrawerOpen }) => {
 			);
 
 			endTime = new Date().getTime();
-			const dataSize = memorySizeOf(payload);
-			setTimes({
+
+			setChartData({
 				queryName: queryName,
-				reponseTime: endTime - startTime,
-				payload: payload,
-				size: dataSize,
+				chartItem: [
+					{
+						poll: `poll${++count}`,
+						reponseTime: endTime - startTime,
+						payload: payload,
+						size: memorySizeOf(payload),
+					},
+				],
 			});
+
 			setDrawerOpen(false);
 		} else {
-			const time = [];
-			let payload = null;
+			const chartItemArr = [];
+
 			for (let i = 0; i < poll; i++) {
 				properties.forEach((prop) => {
 					const arr = prop.split(': ');
@@ -101,7 +113,7 @@ const TransV = ({ trans, setDrawerOpen }) => {
 				const startTime = new Date().getTime();
 				let endTime = null;
 
-				payload = await trans.transversalQuery(
+				const payload = await trans.transversalQuery(
 					trans.gql[name],
 					argsObject,
 					cache,
@@ -109,28 +121,34 @@ const TransV = ({ trans, setDrawerOpen }) => {
 				);
 
 				endTime = new Date().getTime();
-				const dataSize = memorySizeOf(payload);
-				time.push(endTime - startTime);
+
+				chartItemArr.push({
+					poll: `poll${++count}`,
+					responseTime: endTime - startTime,
+					payload: payload,
+					size: memorySizeOf(payload),
+				});
 			}
-			setTimes({
+			setChartData({
 				query: queryName,
-				responseTimes: time,
-				payload: payload,
-				size: dataSize,
+				chartItem: [...chartItemArr],
 			});
 			setDrawerOpen(false);
 		}
+
+		//check if localsotrage with queyname exists, if so th
+		//update the count in queryname lcoalstorage
 	};
-	console.log(times);
+	console.log(chartData);
 	return (
-		<div>
+		<>
 			<div className='trans-header'>
 				<h1>TransV</h1>
 				<button onClick={toggleQuery}>{isQuery ? 'Mutation' : 'Query'}</button>
 			</div>
 
 			<Query pingPong={pingPong} isQuery={isQuery} trans={trans} />
-		</div>
+		</>
 	);
 };
 

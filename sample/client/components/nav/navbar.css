@@ -55,7 +55,7 @@
 }
 
 .nav-item:hover {
-	border-bottom: 2px solid #f00946;
+	border-bottom: 2px solid #0994f0;
 }
 
 .nav-links {
@@ -109,9 +109,9 @@
 	}
 
 	.nav-links:hover {
-		color: #f00946;
-		transform: scale(1.2);
-		transition: all 0.3s ease;
+		color: #0994f0;
+		/* transform: scale(1.2);
+		transition: all 0.3s ease-out; */
 	}
 
 	.nav-item:hover {

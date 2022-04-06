@@ -5,7 +5,7 @@ import { IconContext } from 'react-icons/lib';
 import { Button } from './../button/Button';
 import './navbar.css';
 
-const Navbar = () => {
+const Navbar = ({ toggleDrawer }) => {
 	const [click, setClick] = useState(false);
 	const [button, setButton] = useState(true);
 
@@ -56,22 +56,21 @@ const Navbar = () => {
 									Graphiql
 								</Link>
 							</li>
-							{/* <li className='nav-btn'>
+							<li className='nav-btn'>
 								{button ? (
-									<Link to='/signup' className='btn-link'>
-										<Button buttonStyle='btn--outline'>SIGN UP</Button>
-									</Link>
-								) : (
-									<Link
-										to='/signup'
-										className='btn-link'
-										onClick={closeMobileMenu}>
-										<Button buttonStyle='btn--outline' buttonSize='btn--mobile'>
-											SIGN UP
+									<div className='btn-link'>
+										<Button buttonStyle='btn--outline' onClick={toggleDrawer}>
+											TransV
 										</Button>
-									</Link>
+									</div>
+								) : (
+									<div className='btn-link' onClick={closeMobileMenu}>
+										<Button buttonStyle='btn--outline' buttonSize='btn--mobile'>
+											TransV
+										</Button>
+									</div>
 								)}
-							</li> */}
+							</li>
 						</ul>
 					</div>
 				</div>

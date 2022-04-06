@@ -21,7 +21,6 @@ const Query = ({ pingPong, isQuery, trans }) => {
 		if (trans.gql[e.target.value]) {
 			const pattern = /[$].+[)]/gm;
 			const queryString = pattern.exec(trans.gql[e.target.value]);
-			console.log(typeof queryString[0]);
 			return (argsPlaceHolder.current = queryString[0].slice(
 				0,
 				queryString[0].length - 1
@@ -34,12 +33,12 @@ const Query = ({ pingPong, isQuery, trans }) => {
 		<>
 			{isQuery ? (
 				<>
-					<h3>Query</h3>
 					<form
 						className='trans-form'
 						onSubmit={(e) => {
 							pingPong(e, { name, args, cache, custom, poll });
 						}}>
+						<h3>Query</h3>
 						<label>
 							Query Name:
 							<input

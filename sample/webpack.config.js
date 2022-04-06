@@ -1,15 +1,19 @@
 const path = require('path');
-const HtmlWebPackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+const port = process.env.PORT;
+const mode = process.env.NODE_ENV;
 
 module.exports = {
-	mode: process.env.NODE_ENV,
-	entry: {
-		index: './client/index.js',
-	},
+	mode,
+	entry: './client/index.js',
 	output: {
-		path: path.resolve(__dirname, 'build'),
+		path: path.resolve(__dirname, './build'),
 		publicPath: '/',
 		filename: 'bundle.js',
+	},
+	cache: {
+		type: 'filesystem',
 	},
 	module: {
 		rules: [
@@ -19,27 +23,36 @@ module.exports = {
 				use: {
 					loader: 'babel-loader',
 					options: {
-						presets: ['@babel/preset-react', '@babel/preset-env'],
+						presets: ['@babel/env', '@babel/react'],
 					},
 				},
 			},
 			{
-				test: /\.css$/,
-				use: ['style-loader', 'css-loader'],
+				test: /.(css|scss)$/,
+				use: ['style-loader', 'css-loader', 'sass-loader'],
 			},
 		],
 	},
 	plugins: [
-		new HtmlWebPackPlugin({
-			title: 'Development',
-			template: 'index.html',
+		new HtmlWebpackPlugin({
+			title: 'Title',
+			template: './client/index.html',
 		}),
 	],
+	devtool: 'eval-source-map',
 	devServer: {
-		historyApiFallback: true,
-		proxy: {
-			'/graphql': 'http://localhost:3000/',
-			'/transversal': 'http://localhost:3000/',
+		static: {
+			publicPath: '/',
+			directory: path.join(__dirname, 'build'),
 		},
+		historyApiFallback: true,
+		hot: true,
+		proxy: {
+			'/transversal': 'http://localhost:3000',
+			'/graphql': 'http://localhost:3000',
+		},
+	},
+	resolve: {
+		extensions: ['.js', '.jsx'],
 	},
 };
