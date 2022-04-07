@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import TransV from './components/tester/TransV';
 import Chart from './components/chart/Chart';
 
 const Child = ({ trans }) => {
@@ -52,6 +51,10 @@ const Child = ({ trans }) => {
 	// // 				height: 10,
 	// // 			},
 	// // 			false]
+
+	//TODO:
+	//get everythign from localstroage chastdata
+	//recurse over and pass query name and chartdata into chart component
 
 	return (
 		<>
