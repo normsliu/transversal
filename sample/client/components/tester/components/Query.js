@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import './query.css';
+import chartDataConsumer from '../../../context/chart/chartDataConsumer';
 
 const Query = ({ isQuery, trans, toggleDrawer, setChartData }) => {
 	const [name, setName] = useState('');
@@ -8,6 +9,7 @@ const Query = ({ isQuery, trans, toggleDrawer, setChartData }) => {
 	const [custom, setCustom] = useState('');
 	const [poll, setPoll] = useState(1);
 	const argsPlaceHolder = useRef(null);
+	const { updateChartData } = chartDataConsumer();
 
 	const handleChange = (e, fn) => {
 		fn(e.target.value);
@@ -119,10 +121,8 @@ const Query = ({ isQuery, trans, toggleDrawer, setChartData }) => {
 
 			window.localStorage.setItem('chartData', JSON.stringify(storageObj));
 
-			setChartData({
-				queryName: queryName,
-				chartItem: [chartItemObj],
-			});
+			setChartData(storageObj);
+			updateChartData(storageObj);
 		} else {
 			const chartItemArr = [];
 
@@ -169,10 +169,8 @@ const Query = ({ isQuery, trans, toggleDrawer, setChartData }) => {
 
 			window.localStorage.setItem('chartData', JSON.stringify(storageObj));
 
-			setChartData({
-				query: queryName,
-				chartItem: chartItemArr,
-			});
+			setChartData(storageObj);
+			updateChartData(storageObj);
 		}
 		setName('');
 		setArgs('');

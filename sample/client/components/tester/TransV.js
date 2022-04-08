@@ -4,7 +4,7 @@ import './transV.css';
 
 const TransV = ({ trans, toggleDrawer }) => {
 	const [isQuery, setIsQuery] = useState(true);
-	const [chartData, setChartData] = useState([]);
+	const [chartData, setChartData] = useState();
 
 	const toggleQuery = () => {
 		setIsQuery(!isQuery);

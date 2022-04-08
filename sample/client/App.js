@@ -5,6 +5,7 @@ import TransversalSocket from '../TransversalSocket';
 import Child from './Child';
 import GraphQL from './components/GraphQL';
 import NDFLayout from './components/layout/NDFLayout';
+import ChartDataProvider from './context/chart/ChartDataContext';
 
 const App = () => {
 	const [trans, setTrans] = useState({ data: null });
@@ -20,12 +21,14 @@ const App = () => {
 	return (
 		<Router>
 			<div>
-				<NDFLayout trans={trans}>
-					<Routes>
-						<Route exact path='/' element={<Child trans={trans} />} />
-						<Route path='/graphql' element={<GraphQL />} />
-					</Routes>
-				</NDFLayout>
+				<ChartDataProvider>
+					<NDFLayout trans={trans}>
+						<Routes>
+							<Route exact path='/' element={<Child />} />
+							<Route path='/graphql' element={<GraphQL />} />
+						</Routes>
+					</NDFLayout>
+				</ChartDataProvider>
 			</div>
 		</Router>
 	);
