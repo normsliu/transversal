@@ -56,7 +56,7 @@ mongoose
  */
 const redisClient = redis.createClient({});
 
-const Transversal = require('transversal');
+const Transversal = require('transversal_test');
 const transversal = new Transversal([User, Message]);
 transversal.generateFieldSchema();
 
@@ -72,7 +72,7 @@ const userResolver = async (parent, args) => {
 	return users;
 };
 
-transversal.generateQuery('getUsers', 'User', userResolver, userArgs);
+// transversal.generateQuery('getUsers', 'User', userResolver, userArgs);
 
 /**
  *
@@ -94,7 +94,7 @@ const customSchema = {
 	messages: [{ message: 'String' }],
 };
 
-transversal.generateCustomFieldSchema(customSchema, 'customQuery');
+// transversal.generateCustomFieldSchema(customSchema, 'customQuery');
 
 // Resolver and arguments
 const customResolver = async (parent, args) => {
@@ -120,12 +120,12 @@ const customArgs = {
 };
 
 // Generate resolver and query
-transversal.generateQuery(
-	'getCustom',
-	'customQuery',
-	customResolver,
-	customArgs
-);
+// transversal.generateQuery(
+// 	'getCustom',
+// 	'customQuery',
+// 	customResolver,
+// 	customArgs
+// );
 
 // Stringify object with methods
 function replacer(key, value) {
