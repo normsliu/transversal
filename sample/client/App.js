@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './app.css';
 import TransversalSocket from '../TransversalSocket';
 import Child from './Child';
-import GraphQL from './components/GraphQL';
 import NDFLayout from './components/layout/NDFLayout';
 import ChartDataProvider from './context/chart/ChartDataContext';
 
@@ -25,7 +24,6 @@ const App = () => {
 					<NDFLayout trans={trans}>
 						<Routes>
 							<Route exact path='/' element={<Child />} />
-							<Route path='/graphql' element={<GraphQL />} />
 						</Routes>
 					</NDFLayout>
 				</ChartDataProvider>

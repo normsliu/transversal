@@ -7,14 +7,10 @@ const Drawer = ({ drawerOpen, trans, toggleDrawer }) => {
 	return (
 		<div className={drawerOpen ? 'side-drawer open' : 'side-drawer'}>
 			<div className='side-drawer-contents'>
-				<div>
+				<div className='toggle-arrow'>
 					<FaAngleDoubleLeft onClick={toggleDrawer} />
 				</div>
 				<TransV trans={trans} toggleDrawer={toggleDrawer} />
-				{trans.gql &&
-					Object.keys(trans.gql).map((key, index) => {
-						return <div key={`${key}${index}`}>{key}</div>;
-					})}
 			</div>
 		</div>
 	);

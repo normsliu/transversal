@@ -4,7 +4,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: flex-start;
-	padding-top: 5%;
+	padding-top: 3rem;
 	position: fixed;
 	top: 0;
 	right: 0;
@@ -19,13 +19,23 @@
 .side-drawer.open {
 	left: 0;
 	transition: 350ms;
+	min-width: 350px;
+	width: 100%;
+	height: 100vh;
+	overflow-y: auto;
 }
 
 .side-drawer-contents {
 	/* display: flex; */
 	/* justify-content: flex-start; */
 	/* align-items: center; */
-	padding: 10px;
+	padding: 2rem;
+	width: 100%;
+}
+
+.toggle-arrow {
+	font-size: 1.5em;
+	padding: 2rem 0 2rem 0;
 }
 
 /* @media screen and (max-width: 960px) {

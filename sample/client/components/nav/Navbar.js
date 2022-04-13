@@ -49,12 +49,12 @@ const Navbar = ({ toggleDrawer }) => {
 							</li>
 
 							<li className='nav-item'>
-								<Link
-									to='/graphql'
+								<a
 									className='nav-links'
-									onClick={closeMobileMenu}>
+									onClick={closeMobileMenu}
+									href='http://localhost:3000/graphql'>
 									Graphiql
-								</Link>
+								</a>
 							</li>
 							<li className='nav-btn'>
 								{button ? (

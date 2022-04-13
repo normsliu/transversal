@@ -7,7 +7,7 @@ const Query = ({ isQuery, trans, toggleDrawer, setChartData }) => {
 	const [args, setArgs] = useState('');
 	const [cache, setCache] = useState(false);
 	const [custom, setCustom] = useState('');
-	const [poll, setPoll] = useState(1);
+	const [poll, setPoll] = useState(null);
 	const argsPlaceHolder = useRef(null);
 	const { updateChartData } = chartDataConsumer();
 
@@ -176,7 +176,7 @@ const Query = ({ isQuery, trans, toggleDrawer, setChartData }) => {
 		setArgs('');
 		setCache(false);
 		setCustom('');
-		setPoll(1);
+		setPoll(null);
 		toggleDrawer();
 		argsPlaceHolder.current = null;
 	};
@@ -191,21 +191,30 @@ const Query = ({ isQuery, trans, toggleDrawer, setChartData }) => {
 							pingPong(e);
 						}}>
 						<h3>Query</h3>
+
 						<label>
 							Query Name:
-							<input
-								type='text'
-								name='query name'
-								value={name}
-								placeholder='ex) getUsers'
-								onChange={(e) => handleArgsChange(e)}
-							/>
+							<select value={name} onChange={(e) => handleArgsChange(e)}>
+								<option value='' disabled selected>
+									Select your query
+								</option>
+								{trans.gql &&
+									Object.keys(trans.gql).map((key, index) => {
+										return (
+											<option key={`${key}${index}`} value={key}>
+												{key}
+											</option>
+										);
+									})}
+							</select>
 						</label>
 						<label>
 							Args:
-							<input
+							<textarea
 								type='text'
 								name='args'
+								col={30}
+								row={60}
 								value={args}
 								placeholder={
 									argsPlaceHolder.current
@@ -218,6 +227,7 @@ const Query = ({ isQuery, trans, toggleDrawer, setChartData }) => {
 						<label>
 							Cache:
 							<input
+								style={{ width: 20, height: 20 }}
 								type='checkbox'
 								name='cache'
 								onChange={handleCheckboxChange}
@@ -225,7 +235,7 @@ const Query = ({ isQuery, trans, toggleDrawer, setChartData }) => {
 						</label>
 						<label>
 							Custom Response:
-							<input
+							<textarea
 								type='text'
 								name='custom'
 								value={custom}
@@ -239,7 +249,7 @@ const Query = ({ isQuery, trans, toggleDrawer, setChartData }) => {
 								type='text'
 								name='poll'
 								value={poll}
-								placeholder={1}
+								placeholder='enter # of polls'
 								onChange={(e) => handleChange(e, setPoll)}
 							/>
 						</label>
@@ -248,25 +258,33 @@ const Query = ({ isQuery, trans, toggleDrawer, setChartData }) => {
 				</>
 			) : (
 				<>
-					<h3>Mutation</h3>
 					<form
 						className='trans-form'
 						onSubmit={(e) => {
 							pingPong(e);
 						}}>
+						<h3>Mutation</h3>
 						<label>
 							Mutation Name:
-							<input
-								type='text'
-								name='query name'
-								value={name}
-								placeholder='ex) getUsers'
-								onChange={(e) => handleArgsChange(e)}
-							/>
+							<select value={name} onChange={(e) => handleArgsChange(e)}>
+								<option value='' disabled selected>
+									Select your mutation
+								</option>
+								{trans.gql &&
+									Object.keys(trans.gql).map((key, index) => {
+										return (
+											<option key={`${key}${index}`} value={key}>
+												{key}
+											</option>
+										);
+									})}
+							</select>
 						</label>
 						<label>
 							Args:
-							<input
+							<textarea
+								col={30}
+								row={60}
 								type='text'
 								name='args'
 								placeholder={
@@ -283,7 +301,9 @@ const Query = ({ isQuery, trans, toggleDrawer, setChartData }) => {
   </label> */}
 						<label>
 							Custom Response:
-							<input
+							<textarea
+								col={30}
+								row={60}
 								type='text'
 								name='custom'
 								value={custom}
@@ -297,7 +317,7 @@ const Query = ({ isQuery, trans, toggleDrawer, setChartData }) => {
 								type='text'
 								name='poll'
 								value={poll}
-								placeholder={1}
+								placeholder='enter # of polls'
 								onChange={(e) => handleChange(e, setPoll)}
 							/>
 						</label>

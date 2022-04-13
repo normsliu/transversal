@@ -1,6 +1,8 @@
 .trans-header {
 	display: flex;
-	padding: 20px;
+	padding: 0rem 0 1rem 0;
+	justify-content: center;
+	align-items: center;
 }
 
 .trans-header h1 {
@@ -8,5 +10,6 @@
 }
 
 .trans-header button {
-	/* margin-left: 20px; */
+	padding: 10px;
+	border-radius: 7%;
 }
