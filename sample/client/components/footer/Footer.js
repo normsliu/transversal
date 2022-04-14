@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import './footer.css';
 
@@ -9,20 +8,22 @@ const Footer = () => {
 			<div className='footer'>
 				<small className='footer-logo'>TransversaL © 2022</small>
 				<div className='social-icons'>
-					<Link
+					<a
 						className='social-icon-link'
-						to='/'
+						href='https://github.com/oslabs-beta/transversal'
 						target='_blank'
+						rel='noopener noreferrer'
 						aria-label='github'>
 						<FaGithub />
-					</Link>
-					<Link
+					</a>
+					<a
 						className='social-icon-link'
-						to='/'
+						href='/'
 						target='_blank'
+						rel='noopener noreferrer'
 						aria-label='LinkedIn'>
 						<FaLinkedin />
-					</Link>
+					</a>
 				</div>
 			</div>
 		</div>

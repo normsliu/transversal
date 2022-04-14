@@ -1,14 +1,13 @@
 import React from 'react';
-import Chart from './components/chart/Chart';
-import chartDataConsumer from './context/chart/chartDataConsumer';
+import Chart from '../chart/Chart';
+import chartDataConsumer from '../../context/chart/chartDataConsumer';
+import './hero.css';
 
-const Child = () => {
+const Hero = () => {
 	const { chartDataObj } = chartDataConsumer();
 
 	return (
-		<div>
-			<h1>Hello World!</h1>
-
+		<div className='hero-main'>
 			{chartDataObj
 				? Object.keys(chartDataObj).map((item, index) => {
 						return (
@@ -24,4 +23,4 @@ const Child = () => {
 	);
 };
 
-export default Child;
+export default Hero;

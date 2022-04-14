@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './app.css';
 import TransversalSocket from '../TransversalSocket';
-import Child from './Child';
 import NDFLayout from './components/layout/NDFLayout';
 import ChartDataProvider from './context/chart/ChartDataContext';
+import Hero from './components/hero/Hero';
 
 const App = () => {
 	const [trans, setTrans] = useState({ data: null });
@@ -23,7 +23,7 @@ const App = () => {
 				<ChartDataProvider>
 					<NDFLayout trans={trans}>
 						<Routes>
-							<Route exact path='/' element={<Child />} />
+							<Route exact path='/' element={<Hero />} />
 						</Routes>
 					</NDFLayout>
 				</ChartDataProvider>

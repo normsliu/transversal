@@ -64,7 +64,12 @@ const Navbar = ({ toggleDrawer }) => {
 										</Button>
 									</div>
 								) : (
-									<div className='btn-link' onClick={closeMobileMenu}>
+									<div
+										className='btn-link'
+										onClick={() => {
+											closeMobileMenu();
+											toggleDrawer();
+										}}>
 										<Button buttonStyle='btn--outline' buttonSize='btn--mobile'>
 											TransV
 										</Button>

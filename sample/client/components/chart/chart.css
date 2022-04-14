@@ -1,0 +1,29 @@
+/* .chart-container {
+	display: flex;
+	justify-content: center;
+} */
+
+.chart-main {
+	display: flex;
+	flex: 1;
+	justify-content: center;
+	margin-bottom: 2rem;
+}
+
+.title {
+	text-align: center;
+	padding: 2rem;
+}
+
+.chart {
+	display: flex;
+	justify-content: center;
+	flex-grow: 2;
+}
+
+.widget {
+	display: flex;
+	justify-content: center;
+	flex-grow: 1;
+	width: 100%;
+}
