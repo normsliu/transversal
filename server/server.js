@@ -128,19 +128,7 @@ transversal.generateQuery(
 	customArgs
 );
 
-// Stringify object with methods
-function replacer(key, value) {
-	if (typeof value === 'function') {
-		return value.toString();
-	} else {
-		return value;
-	}
-}
-
-const json = JSON.stringify(
-	{ gql: transversal.gql, transversalQuery: transversal.transversalQuery },
-	replacer
-);
+const json = transversal.jsonStringify(transversal);
 
 /**
  * Socket IO - Bi-directional connection with client
