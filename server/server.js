@@ -128,16 +128,8 @@ const json = transversal.jsonStringify(transversal);
  * Socket IO - Bi-directional connection with client
  */
 
-io.on('connection', (socket) => {
-	console.log('client connected: ', socket.id);
-	// Send gql object
-	socket.emit('transverse', json);
-
-	socket.on('disconnect', (reason) => {
-		console.log(reason);
-	});
-});
-
+const socket = transversal.instantiateSocket(server, 'http://localhost:8080');
+socket.openConnection(json);
 /**
  * GraphQL route
  */
