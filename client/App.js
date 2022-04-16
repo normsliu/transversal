@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-// import TransversalSocket from '../TransversalSocket';
 import Child from './Child';
+// import { TransversalSocket } from 'transversal';
+import TransversalSocket from './old';
 
 const App = () => {
 	const [trans, setTrans] = useState({ data: null });
 
-	// const transSocket = new TransversalSocket('http://localhost:3000');
+	const transSocket = new TransversalSocket('http://localhost:3000');
 
-	// useEffect(() => {
-	// 	transSocket.getTransversalInstance().then((data) => setTrans(data));
-	// }, []);
+	useEffect(() => {
+		transSocket.getTransversalInstance().then((data) => setTrans(data));
+	}, []);
 
-	// console.log('trans', trans);
+	console.log('trans', trans);
 
 	return (
 		<Router>
