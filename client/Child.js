@@ -5,7 +5,6 @@ const Child = ({ trans }) => {
 	const [customUsers, setCustomUsers] = useState();
 
 	useEffect(() => {
-		console.log(trans, 'hi');
 		const query = async () => {
 			const users = await trans.transversalQuery(
 				trans.gql.getUsers,
@@ -15,21 +14,22 @@ const Child = ({ trans }) => {
 				},
 				false
 			);
+
 			setDefaultUsers(users);
 
-			// 	const customUsers = await trans.transversalQuery(
-			// 		trans.gql.getCustom,
-			// 		{
-			// 			age: 10,
-			// 			height: 10,
-			// 		},
-			// 		false,
-			// 		`firstName
-			// 	lastName
-			// 	age
-			// 	height`
-			// 	);
-			// 	setCustomUsers(customUsers);
+			const customUsers = await trans.transversalQuery(
+				trans.gql.getCustom,
+				{
+					age: 10,
+					height: 10,
+				},
+				false,
+				`firstName
+				lastName
+				age
+				height`
+			);
+			setCustomUsers(customUsers);
 		};
 		query();
 	}, [trans]);
