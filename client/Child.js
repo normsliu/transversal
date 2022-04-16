@@ -5,6 +5,7 @@ const Child = ({ trans }) => {
 	const [customUsers, setCustomUsers] = useState();
 
 	useEffect(() => {
+		console.log('mounting', trans.transversalQuery);
 		const query = async () => {
 			const users = await trans.transversalQuery(
 				trans.gql.getUsers,
@@ -14,7 +15,7 @@ const Child = ({ trans }) => {
 				},
 				false
 			);
-
+			console.log('users', users);
 			setDefaultUsers(users);
 
 			const customUsers = await trans.transversalQuery(
@@ -33,9 +34,6 @@ const Child = ({ trans }) => {
 		};
 		query();
 	}, [trans]);
-
-	console.log('Default User Response: ', defaultUsers);
-	console.log('Custom User Response: ', customUsers);
 
 	return <h1>Hello World!</h1>;
 };

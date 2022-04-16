@@ -13,8 +13,6 @@ const App = () => {
 		transSocket.getTransversalInstance().then((data) => setTrans(data));
 	}, []);
 
-	console.log('trans', trans);
-
 	return (
 		<Router>
 			<div className='container'>
