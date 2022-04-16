@@ -6,7 +6,6 @@ const mongoose = require('mongoose');
 const graphqlHTTP = require('express-graphql').graphqlHTTP;
 const { User, Message } = require('./models/mongoModel');
 const PORT = process.env.PORT || 3000;
-const socketio = require('socket.io');
 const redis = require('redis');
 const http = require('http');
 const app = express();
@@ -51,9 +50,12 @@ mongoose
 const redisClient = redis.createClient({});
 
 const { Transversal } = require('transversal');
-console.log(Transversal);
 const transversal = new Transversal([User, Message], redisClient);
+
+// Adding middleware to handle cache request
 app.use('/transversal', transversal.cache.cacheMiddleware);
+
+// Generate field schema
 transversal.generateFieldSchema();
 
 // Generate resolver
