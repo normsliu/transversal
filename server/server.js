@@ -130,6 +130,7 @@ const json = transversal.jsonStringify(transversal);
 
 const socket = transversal.instantiateSocket(server, 'http://localhost:8080');
 socket.openConnection(json);
+
 /**
  * GraphQL route
  */
