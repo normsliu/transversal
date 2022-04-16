@@ -20,12 +20,6 @@ const {
 	GraphQLSchema,
 } = require('graphql');
 
-const io = socketio(server, {
-	cors: {
-		origin: 'http://localhost:8080',
-	},
-});
-
 /**
  * Middlewares
  */
