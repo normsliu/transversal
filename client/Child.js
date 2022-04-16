@@ -6,7 +6,15 @@ const Child = ({ trans }) => {
 
 	useEffect(() => {
 		console.log('mounting', trans.transversalQuery);
-		const res = fetch('/graphql');
+		const users = trans.transversalQuery(
+			trans.gql.getUsers,
+			{
+				age: 10,
+				height: 10,
+			},
+			false
+		);
+		console.log('users', users);
 		// const query = async () => {
 		// 	const users = await trans.transversalQuery(
 		// 		trans.gql.getUsers,
@@ -33,7 +41,7 @@ const Child = ({ trans }) => {
 		// 	);
 		// 	setCustomUsers(customUsers);
 		// };
-		query();
+		// query();
 	}, [trans]);
 
 	return <h1>Hello World!</h1>;
