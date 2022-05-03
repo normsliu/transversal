@@ -4,8 +4,8 @@ import './widget.css';
 const Widget = () => {
 	return (
 		<div className='widget-main'>
-			<p>Average Timesrthsrthsrthsrehsehsethsaethhsaeth</p>
-			<p>Average Weight hserhsathraehaethaethethaethaetha</p>
+			<p>Average Times: 500</p>
+			<p>Average Weight: 500</p>
 		</div>
 	);
 };

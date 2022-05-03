@@ -12,7 +12,7 @@
 
 .title {
 	text-align: center;
-	padding: 2rem;
+	padding: 3rem;
 }
 
 .chart {
@@ -26,4 +26,11 @@
 	justify-content: center;
 	flex-grow: 1;
 	width: 100%;
+}
+
+@media screen and (max-width: 1200px) {
+	.chart-main {
+		display: flex;
+		flex-direction: column;
+	}
 }
