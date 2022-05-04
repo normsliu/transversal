@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Child from './Child';
 // import { TransversalSocket } from 'transversal';
-import TransversalSocket from './old';
+// import TransversalSocket from './old';
 
 const App = () => {
 	const [trans, setTrans] = useState({ data: null });
