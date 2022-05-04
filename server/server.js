@@ -92,7 +92,7 @@ transversal.generateMutation('addUser', 'User', addUserResolver, addUserArgs);
 
 /**
  *
- * Custom QUery Set Up
+ * Custom Query Set Up
  */
 // Generate custom field schema
 const customSchema = {
